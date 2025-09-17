@@ -1,6 +1,142 @@
-.hero{
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.hero {
+  max-width: 700px;
+  min-height: 80vh;
+  margin: auto;
+  padding-top: 6rem;
+  padding-bottom: 3rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #0c0cd7;
+}
+
+.guestMsg {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.input {
+  flex: 1;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.addBtn {
+  padding: 0.7rem 1.2rem;
+  background-color: #0c0cd7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.addBtn:hover {
+  background-color: #0909a5;
+}
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  width: 100%;
+}
+
+.task {
+  background: #f8f8ff;
+  border: 1px solid #ddd;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: 0.2s ease;
+  width: 100%;
+}
+
+.task.done .taskTitle {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.taskContent {
+  flex: 1;
+  text-align: left;
+}
+
+.taskTitle {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.taskDesc {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.3rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.descBtn,
+.doneBtn,
+.deleteBtn {
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  transition: 0.2s;
+  width: 100px;
+}
+
+.descBtn {
+  background: #ffc107;
+  color: black;
+}
+
+.descBtn:hover {
+  background: #e0a800;
+}
+
+.doneBtn {
+  background: #28a745;
+  color: white;
+}
+
+.doneBtn:hover {
+  background: #218838;
+}
+
+.deleteBtn {
+  background: #dc3545;
+  color: white;
+}
+
+.deleteBtn:hover {
+  background: #c82333;
+}
+
+.noTask {
+  font-style: italic;
+  color: #777;
 }

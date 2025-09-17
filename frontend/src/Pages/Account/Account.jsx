@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./Account.module.css";
+// import axios from "axios"
 
 function Account() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     // Example: get user from localStorage after login/register
-    const storedUser = localStorage.getItem("user");
+    const storedUser = localStorage.getItem("token");
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      setUser({name: localStorage.getItem("name"), email: localStorage.getItem("email")})
     }
   }, []);
+
+  // async function getUserData() {
+  //   const api_url = import.meta.env.VITE_API_URL;
+  //   const userData = await axios.get(`${api_url}/`)
+  // }
 
   return (
     <section className={style.account}>
@@ -35,7 +41,7 @@ function Account() {
           <button
             className={style.logoutBtn}
             onClick={() => {
-              localStorage.removeItem("user");
+              localStorage.clear();
               setUser(null);
             }}
           >

@@ -7,7 +7,8 @@ const userSchema = new Schema({
     name: { type: String, required: true },
     email: {type: String, required: true},
     password: { type: String, required: true },
-    avatar: { type: String, default: "" }
+    avatar: { type: String, default: "" },
+    tasks:{type:Number, default: 0}
 });
 
 userSchema.pre("save", async function (next) {

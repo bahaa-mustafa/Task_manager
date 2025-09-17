@@ -35,13 +35,15 @@ function LoginPage() {
   const onSubmit = async (data) => {
     const user = { email: `${data.userEmail}`, password: `${data.userPassword}` }
     let existingUser = await getUser(user)
-   
+
     if (existingUser == null) {
       console.log("you don't have an acount");
       setUserState(true);
     } else {
       console.log("Login successful!");
-      localStorage.setItem("token", existingUser.token)
+      localStorage.setItem("token", existingUser.token);
+      localStorage.setItem("email", existingUser.email);
+      localStorage.setItem("name", existingUser.name);
       navigate("/home");
     }
   }

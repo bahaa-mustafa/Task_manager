@@ -5,9 +5,9 @@ const generateToken = require("../utils/generateToken")
 
 const registerUser = async (req, res) => {
     console.log("start here =================================");
-    
+
     console.log("Request body:", req.body);
-    
+
     const { name, email, password } = req.body;
     const userExists = await User.findOne({ email })
     // console.log(`user: ${userExists}`);
@@ -58,10 +58,42 @@ const loginUser = async (req, res) => {
     }
 }
 
-const getUsers = async (req, res) => {
-    const users = await User.find()
-    res.send(users);
+// const getUsers = async (req, res) => {
+//     const users = await User.find()
+//     res.send(users);
+// }
+
+const getUser = async (req, res) => {
+    try {
+        const { id } = req.body;
+        const user = await User.findById(id)
+        res.json({
+            name: user.name,
+            email: user.email,
+            avatar: user.avatar,
+            tasks: user.tasks
+        })
+    }catch(err){
+        console.log("error in getting user: ", err);
+        res.status(204).json({ message: `some thing wrong` })
+    }
 }
+
+// const updateUser = async (req, res) => {
+//     try {
+//         const { email, password, name, avatar, tasks } = req.body;
+//         const user = await User.findOne({ email })
+//         if (user && await user.matchPassword(password)) {
+//             user.update({ password, name, avatar, tasks })
+//             res.status(200).json({ message: "user updated" })
+//         } else {
+//             res.status(204).json({ message: "email or password are invalid" })
+//         }
+//     } catch (err) {
+//         console.log("error in updating user: ", err);
+//         res.status(204).json({ message: `some thing wrong` })
+//     }
+// }
 
 const deletUser = async (req, res) => {
     const { id } = req.params;
@@ -77,7 +109,7 @@ const deletUser = async (req, res) => {
 // const updatUser = async(req, res)=>{
 //     const {id} = req.params;
 //     const{email} = req.body;
-    
+
 //     try{
 //         const user = await User.findOne({email})
 //         user.updatUser
@@ -86,4 +118,4 @@ const deletUser = async (req, res) => {
 //     }
 // }
 
-module.exports = { registerUser, loginUser, getUsers, deletUser }
+module.exports = { registerUser, loginUser, deletUser, getUser }

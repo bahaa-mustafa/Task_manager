@@ -45,7 +45,9 @@ function Register() {
       console.log("somthing happen");
     }
     else {
-      localStorage.setItem("token", existingUser.token)
+      localStorage.setItem("token", existingUser.token);
+      localStorage.setItem("email", existingUser.email);
+      localStorage.setItem("name", existingUser.name);
       navigate("/home");
     }
   }
