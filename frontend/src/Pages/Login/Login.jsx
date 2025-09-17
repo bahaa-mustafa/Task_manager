@@ -1,54 +1,49 @@
 import { Link, useNavigate } from "react-router-dom"
 import style from "./Login.module.css"
 import { useForm } from "react-hook-form"
+import axios from "axios"
+import { useState } from "react"
+
 
 function LoginPage() {
 
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
 
+  const [userState, setUserState] = useState(false)
 
-  const validUser = [{
-    email: "admin@bahaa-mustafa.com",
-    password: "Admin@bahaa123"
-  }]
+  async function getUser(user) {
+    const api_url = import.meta.env.VITE_API_URL;
 
-  function setToLocalStorge() {
-    localStorage.setItem("user", JSON.stringify({
-      name: "Bahaa",
-      email: "admin@bahaa-mustafa.com",
-      avatar: "https://i.pravatar.cc/0"
-    }));
+    try {
+      const res = await axios.post(`${api_url}/auth/login`, user);
+      const myData = res.data;
+      if (res.status === 200) {
+        return res.data;
+      } else {
+        return null;
+      }
+    } catch (err) {
+      if (err.response) {
+        console.log("error response", err.response.data);
+      } else {
+        console.log("error", err.message);
+      }
+    }
   }
 
-
-
-  const onSubmit = (data) => {
-    console.log(data);
-    console.log(`user email: ${data.userEmail} and password: ${data.userPassword}`);
-
-
-    let existingUser = validUser.find((user) => user.email === data.userEmail)
-
-    if (existingUser) {
-      console.log("Login successful!");
-      setToLocalStorge()
-      navigate("/home");
-    } else {
+  const onSubmit = async (data) => {
+    const user = { email: `${data.userEmail}`, password: `${data.userPassword}` }
+    let existingUser = await getUser(user)
+   
+    if (existingUser == null) {
       console.log("you don't have an acount");
-      navigate("/register");
-      console.log(validUser);
-
+      setUserState(true);
+    } else {
+      console.log("Login successful!");
+      localStorage.setItem("token", existingUser.token)
+      navigate("/home");
     }
-
-
-
-    // if(data.userEmail === validUser.email && data.userPassword === validUser.password){
-    //   console.log("Login successful!");
-    //   navigate("/home")      
-    // }else{
-    //   alert("Invalid email or password");      
-    // }
   }
 
 
@@ -67,7 +62,8 @@ function LoginPage() {
                     pattern: {
                       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                       message: "Please enter a valid email address!"
-                    }
+                    },
+                    onChange: () => { setUserState(false) }
                   })} type="email" placeholder="Email" />
                   {errors.userEmail && <p>{errors.userEmail.message}</p>}
                 </div>
@@ -82,12 +78,13 @@ function LoginPage() {
                     pattern: {
                       value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
                       message: "Password must include uppercase, lowercase, and a special character"
-                    }
+                    },
+                    onChange: () => setUserState(false)
                   })} type="password" placeholder="Password" />
                   {errors.userPassword && <p>{errors.userPassword.message}</p>}
                 </div>
                 <button type="submit">Login</button>
-                {/* <Link to={"/home"}><button type="submit">Login</button></Link> */}
+                {userState && <p style={{ margin: "5px" }}>You don't have an account go to Regiser</p>}
               </form>
               <div className={style.regiser}>
                 <h3>Don't have an account? <Link to={"/register"}>Register now</Link></h3>
