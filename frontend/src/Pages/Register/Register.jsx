@@ -48,6 +48,7 @@ function Register() {
       localStorage.setItem("token", existingUser.token);
       localStorage.setItem("email", existingUser.email);
       localStorage.setItem("name", existingUser.name);
+      localStorage.setItem("user_id", existingUser._id);
       navigate("/home");
     }
   }

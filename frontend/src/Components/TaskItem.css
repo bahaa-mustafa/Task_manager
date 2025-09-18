@@ -1,0 +1,7 @@
+.editSection{
+    display: flex;
+    width: 100%;
+}
+.editSection button{
+    width: 100px;
+}
