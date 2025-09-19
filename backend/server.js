@@ -11,7 +11,7 @@ const morgan = require("morgan")
 dotenv.config();
 
 const app = express()
-const port = process.env._PORT;
+const port = process.env.PORT || 3000;
 
 
 app.use(morgan("tiny"))
