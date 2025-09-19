@@ -95,3 +95,15 @@ button:hover {
 .regiser h3 a:hover{
     color: rgba(69, 69, 214, 0.9);
 }
+
+@media (max-width: 768px) {
+    .row{
+        justify-content: center;
+    }
+    .img{
+        display: none;
+    }
+    .content{
+        padding: 0;
+    }
+}
