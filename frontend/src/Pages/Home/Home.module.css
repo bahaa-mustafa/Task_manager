@@ -52,7 +52,7 @@
   outline: none;
 }
 
-.input:focus{
+.input:focus {
   border-color: #0c0cd7;
 }
 
@@ -112,32 +112,35 @@
   margin-top: 0.3rem;
 }
 
-.editSection{
+.editSection {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 }
-.editSection input{
+
+.editSection input {
   width: 100%;
   outline: none;
   border: 1px solid rgba(83, 83, 216, 0.5);
 }
-.editSection input:hover{
+
+.editSection input:hover {
   border: 1px solid rgba(83, 83, 216, 1);
 }
-.editSection input:focus{
-  border-color:  rgba(83, 83, 216, 1);
-  
+
+.editSection input:focus {
+  border-color: rgba(83, 83, 216, 1);
+
 }
 
-.editSection .btn{
+.editSection .btn {
   display: flex;
   margin-top: 10px;
   justify-content: start;
   gap: 10px;
 }
 
-.editSection .btn button{
+.editSection .btn button {
   font-size: 0.9em;
   width: 100px;
   padding: 5px 10px;
@@ -191,4 +194,21 @@
 .noTask {
   font-style: italic;
   color: #777;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 0 20px;
+  }
+
+  .task {
+    min-height: 70px;
+  }
+
+  .descBtn,
+  .doneBtn,
+  .deleteBtn {
+    width: 50px;
+    font-size: 0.7em;
+  }
 }

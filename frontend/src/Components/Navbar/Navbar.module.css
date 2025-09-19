@@ -54,3 +54,12 @@
 span{
     margin-right: 5px;
 }
+
+@media (max-width: 768px) {
+    .container{
+        padding: 10px 20px;
+    }
+    .logo{
+        height: 40px;
+    }
+}

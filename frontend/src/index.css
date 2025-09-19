@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 * {
@@ -9,15 +8,25 @@
   scroll-behavior: smooth;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-.container{
+.container {
   padding: 50px 100px;
   margin: auto;
 }
 
-.row{
+.row {
   display: flex;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 13px;
+  }
+
+  .container {
+    padding: 30px 20px;
+  }
 }

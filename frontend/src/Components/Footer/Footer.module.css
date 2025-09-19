@@ -29,6 +29,7 @@
     color: rgba(242, 242, 245, 0.8);
     font-size: 1.1em;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .our_logo h3:hover {
@@ -82,15 +83,17 @@
     font-size: 1.1em;
     font-weight: 400;
     padding-bottom: 3px;
+    align-items: center;
+    gap: 5px;
 }
 
 .contacts a:hover{
     color: rgb(229, 229, 237);
 }
 
-.actions{
+/* .actions{
 
-}
+} */
 
 .navbar_links .links{
     display: flex;
@@ -126,3 +129,18 @@
     font-weight: 300;
 }
 
+
+@media (max-width: 768px) {
+    body{
+        font-size: 10px;
+    }
+    .info{
+        justify-content: space-between;
+        /* gap: 60px; */
+        align-items: start;
+    }
+    .contacts{
+        flex-direction: column;
+        gap: 8px;
+    }
+}
